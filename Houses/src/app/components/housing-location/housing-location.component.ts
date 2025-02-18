@@ -7,6 +7,7 @@ import {RouterLink} from '@angular/router';
   selector: 'app-housing-location',
   imports: [CommonModule, RouterLink],
   templateUrl: './housing-location.component.html',
+  standalone: true,
   styleUrl: './housing-location.component.css'
 })
 export class HousingLocationComponent {
