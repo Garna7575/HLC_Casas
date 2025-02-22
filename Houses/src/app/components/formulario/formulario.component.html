@@ -1,18 +1,35 @@
-<form (submit)="submitForm()" [formGroup]="formulario" id="formulario">
+<form [formGroup]="formulario" (ngSubmit)="submitForm()" id="formulario">
   <label>Nombre de usuario</label>
-  <input type="text" id="nameInput" required><br>
+  <input type="text" formControlName="nombre"><br>
+  <span *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched">
+    El nombre es obligatorio
+  </span>
 
   <label>Apellidos</label>
-  <input type="text" id="surnameInput" required><br>
+  <input type="text" formControlName="apellidos"><br>
+  <span *ngIf="formulario.get('apellidos')?.invalid && formulario.get('apellidos')?.touched">
+    Los apellidos son obligatorios
+  </span>
 
   <label>Edad</label>
-  <input type="number" id="ageInput" required min="17"><br>
+  <input type="number" formControlName="edad"><br>
+  <span *ngIf="formulario.get('edad')?.invalid && formulario.get('edad')?.touched">
+    La edad es obligatoria y debe ser mayor o igual a 17
+  </span>
 
   <label>Email</label>
-  <input type="email" id="emailInput" required><br>
+  <input type="email" formControlName="email"><br>
+  <span *ngIf="formulario.get('email')?.invalid && formulario.get('email')?.touched">
+    Ingresa un email válido
+  </span>
 
-  <label>Acepta los términos y condiciones</label>
-  <input type="checkbox" id="conditionsCheckbox" required><br>
+  <label>
+    <input type="checkbox" formControlName="aceptaTerminos">
+    Acepta los términos y condiciones
+  </label><br>
+  <span *ngIf="formulario.get('aceptaTerminos')?.invalid && formulario.get('aceptaTerminos')?.touched">
+    Debes aceptar los términos
+  </span>
 
-  <button type="submit">Completar registro</button>
+  <button type="submit" [disabled]="formulario.invalid">Completar registro</button>
 </form>
